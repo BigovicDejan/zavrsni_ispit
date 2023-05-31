@@ -1,29 +1,25 @@
 import React, { useState } from "react";
 
-const NameInputForm = ({ onUsernameSubmit }) => {
+const NameInputForm = ({ onSubmit }) => {
     const [username, setUsername] = useState("");
 
-    const handleFormSubmit = (event) => {
-        event.preventDefault();
-        onUsernameSubmit(username);
-    };
-
-    const handleNameChange = (event) => {
-        setUsername(event.target.value);
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        onSubmit(username);
     };
 
     return (
         <div>
-            <h1 className="App-header">Enter Your Name</h1>
-            <form onSubmit={handleFormSubmit}>
+            <h1>Unesi svoje Ime/Nadimak</h1>
+            <form onSubmit={handleSubmit}>
                 <input
                     type="text"
                     value={username}
-                    onChange={handleNameChange}
-                    placeholder="Enter your name"
+                    onChange={(e) => setUsername(e.target.value)}
+                    placeholder="Ime/Nadimak"
                     required
                 />
-                <button type="submit">Start Chat</button>
+                <button type="submit">Započni chat</button>
             </form>
         </div>
     );
