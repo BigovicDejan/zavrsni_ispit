@@ -10,7 +10,7 @@ const NameInputForm = ({ onSubmit }) => {
 
     return (
         <div>
-            <h1>Unesi svoje Ime/Nadimak</h1>
+            <h1 className="App-header">Unesi svoje Ime/Nadimak</h1>
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
