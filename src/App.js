@@ -53,11 +53,9 @@ const App = () => {
         }
     }, [drone]);
 
-    if (members.length === 0) {
-        return <NameInputForm onSubmit={setMemberUsername} />;
-    }
-
-    return (
+    return members.length === 0 ? (
+        <NameInputForm onSubmit={setMemberUsername} />
+    ) : (
         <div className="App">
             <div>
                 <h1 className="App-header">My Chat App</h1>
