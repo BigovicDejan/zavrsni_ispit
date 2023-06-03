@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Input = ({ onSendMessage }) => {
+const Input = ({ handleSendMessage }) => {
     const [text, setText] = useState("");
 
     const handleChange = (e) => {
@@ -9,7 +9,11 @@ const Input = ({ onSendMessage }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onSendMessage(text);
+        if (text.trim() === "") {
+            // Add validation logic here if needed
+            return;
+        }
+        handleSendMessage(text);
         setText("");
     };
 
@@ -23,7 +27,7 @@ const Input = ({ onSendMessage }) => {
                     placeholder="Enter your message and press ENTER"
                     autoFocus
                 />
-                <button type="submit">Send</button>
+                <button type="submit">Send Message</button>
             </form>
         </div>
     );

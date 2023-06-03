@@ -54,7 +54,7 @@ const App = () => {
     }, [drone]);
 
     return members.length === 0 ? (
-        <NameInputForm onSubmit={setMemberUsername} />
+        <NameInputForm onFormSubmit={setMemberUsername} />
     ) : (
         <div className="App">
             <div>
@@ -69,7 +69,7 @@ const App = () => {
                     color={member.color}
                 />
             ))}
-            <Input onSendMessage={onSendMessage} />
+            <Input handleSendMessage={onSendMessage} />
         </div>
     );
 };

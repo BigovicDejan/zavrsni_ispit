@@ -1,25 +1,30 @@
 import React, { useState } from "react";
 
-const NameInputForm = ({ onSubmit }) => {
+const NameInputForm = ({ onFormSubmit }) => {
     const [username, setUsername] = useState("");
 
-    const handleSubmit = (e) => {
+    const handleFormSubmit = (e) => {
         e.preventDefault();
-        onSubmit(username);
+        onFormSubmit(username);
     };
 
     return (
         <div>
-            <h1 className="App-header">Unesi svoje Ime/Nadimak</h1>
-            <form onSubmit={handleSubmit}>
+            <header>
+                <h1 className="App-header">Choose your name</h1>
+            </header>
+            <form onSubmit={handleFormSubmit}>
+                <label htmlFor="username"></label>
                 <input
                     type="text"
+                    id="username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    placeholder="Ime/Nadimak"
+                    placeholder="Enter your choice here"
                     required
+                    autoFocus
                 />
-                <button type="submit">Započni chat</button>
+                <button type="submit">Start chat</button>
             </form>
         </div>
     );
