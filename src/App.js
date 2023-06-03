@@ -32,12 +32,19 @@ const App = () => {
             id: drone.clientId,
         };
         setMembers((prevMembers) => [...prevMembers, member]);
+        setMessages((prevMessages) => [
+            ...prevMessages,
+            { member, text: `Welcome to the chat session, ${username}!` },
+        ]);
     };
 
     const onSendMessage = (message) => {
+        const { username, color, id } = members.find(
+            (member) => member.id === drone.clientId
+        );
         drone.publish({
             room: "observable-room",
-            message,
+            message: JSON.stringify({ text: message, username, color, id }),
         });
     };
 

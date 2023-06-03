@@ -2,22 +2,17 @@ import React from "react";
 import { v4 as uuidv4 } from "uuid";
 
 const Message = ({ member, text, currentMember }) => {
+    const { username, color } = member;
     const messageFromMe = member.id === currentMember.id;
     const className = messageFromMe
         ? "Messages-message currentMember"
         : "Messages-message";
 
-    const messageUsername = messageFromMe
-        ? currentMember.username
-        : member.username;
-
-    const messageColor = messageFromMe ? currentMember.color : member.color;
+    const messageUsername = messageFromMe ? "You" : username;
 
     return (
         <li className={className} key={uuidv4()}>
-            <span
-                className="avatar"
-                style={{ backgroundColor: messageColor }}></span>
+            <span className="avatar" style={{ backgroundColor: color }}></span>
             <div className="Message-content">
                 <div className="username">{messageUsername}</div>
                 <div className="text">{text}</div>
@@ -29,14 +24,29 @@ const Message = ({ member, text, currentMember }) => {
 const Messages = ({ messages, currentMember }) => {
     return (
         <ul className="Messages-list">
-            {messages.map((message) => (
-                <Message
-                    key={uuidv4()}
-                    member={message.member}
-                    text={message.text}
-                    currentMember={currentMember}
-                />
-            ))}
+            {messages.map((message, index) => {
+                if (index === 0 && message.text.startsWith("Welcome to")) {
+                    return (
+                        <li className="Messages-welcome" key={uuidv4()}>
+                            {message.text}
+                        </li>
+                    );
+                }
+
+                const { text, username, color, id } = JSON.parse(message.text);
+                const member = { username, color, id };
+                const messageFromMe = member.id === currentMember.id;
+
+                return (
+                    <Message
+                        key={uuidv4()}
+                        member={member}
+                        text={text}
+                        currentMember={currentMember}
+                        messageFromMe={messageFromMe}
+                    />
+                );
+            })}
         </ul>
     );
 };
