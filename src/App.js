@@ -9,6 +9,22 @@ const App = () => {
     const [members, setMembers] = useState([]);
     const [drone, setDrone] = useState(null);
 
+    useEffect(() => {
+        const newDrone = new window.Scaledrone("87bf5ec1VkT1n2AG");
+
+        newDrone.on("open", (error) => {
+            if (error) {
+                console.error(error);
+            }
+        });
+
+        setDrone(newDrone);
+
+        return () => {
+            newDrone.close();
+        };
+    }, []);
+
     const setMemberUsername = (username) => {
         const member = {
             username,
@@ -26,22 +42,6 @@ const App = () => {
     };
 
     useEffect(() => {
-        const newDrone = new window.Scaledrone("87bf5ec1VkT1n2AG");
-
-        newDrone.on("open", (error) => {
-            if (error) {
-                console.error(error);
-            }
-        });
-
-        setDrone(newDrone);
-
-        return () => {
-            newDrone.close();
-        };
-    }, []);
-
-    useEffect(() => {
         if (drone) {
             const room = drone.subscribe("observable-room");
             room.on("data", (data, member) => {
@@ -53,23 +53,25 @@ const App = () => {
         }
     }, [drone]);
 
-    return members.length === 0 ? (
-        <NameInputForm onFormSubmit={setMemberUsername} />
-    ) : (
+    return (
         <div className="App">
             <div>
-                <h1 className="App-header">My Chat App</h1>
+                <h1 className="App-header">Chat away</h1>
             </div>
-            {members.map((member) => (
-                <Messages
-                    key={member.id}
-                    messages={messages}
-                    currentMember={member}
-                    username={member.username}
-                    color={member.color}
-                />
-            ))}
-            <Input handleSendMessage={onSendMessage} />
+            {members.length === 0 ? (
+                <NameInputForm onFormSubmit={setMemberUsername} />
+            ) : (
+                <div>
+                    {members.map((member) => (
+                        <Messages
+                            key={member.id}
+                            messages={messages}
+                            currentMember={member}
+                        />
+                    ))}
+                    <Input handleSendMessage={onSendMessage} />
+                </div>
+            )}
         </div>
     );
 };
