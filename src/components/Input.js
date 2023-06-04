@@ -10,7 +10,6 @@ const Input = ({ handleSendMessage }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (text.trim() === "") {
-            // Add validation logic here if needed
             return;
         }
         handleSendMessage(text);
