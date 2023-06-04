@@ -27,7 +27,7 @@ const Input = ({ handleSendMessage }) => {
                     placeholder="Enter your message and press ENTER"
                     autoFocus
                 />
-                <button type="submit">Send Message</button>
+                <button type="submit"></button>
             </form>
         </div>
     );

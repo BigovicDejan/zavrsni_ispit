@@ -11,7 +11,7 @@ const NameInputForm = ({ onFormSubmit }) => {
     return (
         <div>
             <header>
-                <h1 className="App-header">Choose your name</h1>
+                <h1 className="Header">Choose your name</h1>
             </header>
             <form onSubmit={handleFormSubmit}>
                 <label htmlFor="username"></label>
@@ -24,7 +24,7 @@ const NameInputForm = ({ onFormSubmit }) => {
                     required
                     autoFocus
                 />
-                <button type="submit">Start chat</button>
+                <button type="submit"></button>
             </form>
         </div>
     );

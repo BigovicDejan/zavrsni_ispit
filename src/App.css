@@ -1,16 +1,33 @@
-.App {
+.Main {
+  
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100vh;
 }
 
-.App-header {
-  background-color: #262626;
+.Image {
+  background-image: url("background_img_05.jpg");
+  background-position: center; 
+  background-size:contain;
+  
+ 
+}
+
+.Header {
+  font-size: 40px;
   overflow: visible;
   width: 100%;
   text-align: center;
-  color: white;
+  color: black;
+}
+
+.Welcome-message {
+  font-size: 40px;
+  overflow: visible;
+  width: 100%;
+  text-align: center;
+  color: black;
 }
 
 .Messages-list {
@@ -30,7 +47,6 @@
 }
 
 .Messages-message.currentMember {
-  /*justify-content: flex-end;*/
   flex-direction: row-reverse;
   text-align: right;
 }
@@ -44,8 +60,9 @@
 }
 
 .Messages-message > .avatar {
-  height: 35px;
-  width: 35px;
+  height: 40px;
+  width: 40px;
+  border: solid black 1px;
   border-radius: 50%;
   display: inline-block;
   margin: 0 10px -10px;
@@ -53,23 +70,25 @@
 
 .Message-content > .username {
   display: block;
-  color: gray;
-  font-size: 14px;
+  color: black;
+  font-size: 20px;
   padding-bottom: 4px;
 }
 
 .Message-content > .text {
+  font-size: 20px;
+  font-weight: bold;
   padding: 10px;
   max-width: 400px;
   margin: 0;
-  border-radius: 12px;
-  background-color: plum;
+  border-radius: 8px;
+  background-color: rgb(245, 65, 245);
   color: white;
   display: inline-block;
 }
 
 .currentMember > .Message-content .text {
-  background-color: royalblue;
+  background-color: rgb(23, 77, 238);
 }
 
 form {
@@ -89,10 +108,12 @@ input {
 }
 
 button {
-  padding: 5px 10px;
-  font-size: 16px;
-  background-color: greenyellow;
-  color: black;
-  border-radius: 15px;
+  background-image: url("botun.jpg");
+  background-position: center; 
+  background-size:contain;
+  height: 50px;
+  width: 50px;
+  background-color: teal;
+  border-radius: 50%;
   margin-left: 10px;
 }

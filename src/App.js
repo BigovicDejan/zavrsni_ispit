@@ -34,7 +34,10 @@ const App = () => {
         setMembers((prevMembers) => [...prevMembers, member]);
         setMessages((prevMessages) => [
             ...prevMessages,
-            { member, text: `Welcome to the chat session, ${username}!` },
+            {
+                member,
+                text: `Welcome to the chat session ${username}!`,
+            },
         ]);
     };
 
@@ -61,9 +64,9 @@ const App = () => {
     }, [drone]);
 
     return (
-        <div className="App">
+        <div className="Main Image">
             <div>
-                <h1 className="App-header">Chat away</h1>
+                <h1 className="Header">Enjoy your chat </h1>
             </div>
             {members.length === 0 ? (
                 <NameInputForm onFormSubmit={setMemberUsername} />
