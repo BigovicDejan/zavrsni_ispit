@@ -8,6 +8,8 @@ const App = () => {
     const [messages, setMessages] = useState([]);
     const [members, setMembers] = useState([]);
     const [drone, setDrone] = useState(null);
+    const [isNameSubmitted, setIsNameSubmitted] = useState(false);
+    const [username, setUsername] = useState("");
 
     useEffect(() => {
         const newDrone = new window.Scaledrone("87bf5ec1VkT1n2AG");
@@ -25,20 +27,15 @@ const App = () => {
         };
     }, []);
 
-    const setMemberUsername = (username) => {
+    const setMemberUsername = (name) => {
+        setUsername(name);
         const member = {
-            username,
+            username: name,
             color: "#" + Math.floor(Math.random() * 0xffffff).toString(16),
             id: drone.clientId,
         };
         setMembers((prevMembers) => [...prevMembers, member]);
-        setMessages((prevMessages) => [
-            ...prevMessages,
-            {
-                member,
-                text: `Welcome to the chat session ${username}!`,
-            },
-        ]);
+        setIsNameSubmitted(true);
     };
 
     const onSendMessage = (message) => {
@@ -66,12 +63,14 @@ const App = () => {
     return (
         <div className="Main Image">
             <div>
-                <h1 className="Header">Enjoy your chat </h1>
+                <h1 className="Header">
+                    Enjoy your chat {isNameSubmitted && `${username}`}
+                </h1>
             </div>
-            {members.length === 0 ? (
+            {!isNameSubmitted ? (
                 <NameInputForm onFormSubmit={setMemberUsername} />
             ) : (
-                <div>
+                <>
                     {members.map((member) => (
                         <Messages
                             key={member.id}
@@ -80,7 +79,7 @@ const App = () => {
                         />
                     ))}
                     <Input handleSendMessage={onSendMessage} />
-                </div>
+                </>
             )}
         </div>
     );

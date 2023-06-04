@@ -24,8 +24,8 @@ const Message = ({ member, text, currentMember }) => {
 const Messages = ({ messages, currentMember }) => {
     return (
         <ul className="Messages-list">
-            {messages.map((message, index) => {
-                if (index === 0 && message.text.startsWith("Welcome to")) {
+            {messages.map((message) => {
+                if (message.isWelcomeMessage) {
                     return (
                         <li className="Messages-welcome" key={uuidv4()}>
                             {message.text}
@@ -39,7 +39,7 @@ const Messages = ({ messages, currentMember }) => {
 
                 return (
                     <Message
-                        key={uuidv4()}
+                        key={message.id}
                         member={member}
                         text={text}
                         currentMember={currentMember}
