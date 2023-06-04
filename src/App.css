@@ -9,7 +9,7 @@
 .Image {
   background-image: url("background_img_05.jpg");
   background-position: center; 
-  background-size:contain;
+  background-size:cover;
   
  
 }
