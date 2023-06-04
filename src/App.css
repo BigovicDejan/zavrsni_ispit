@@ -7,18 +7,24 @@
 }
 
 .Image {
-  background-image: url("background_img_05.jpg");
+  background-image: url("./my_backgroung.svg");
   background-position: center; 
-  background-size:cover;
+  background-size:contain;
 }
 
 .Header {
+  background-color: white;
   font-size: 40px;
-  overflow: visible;
-  width: 100%;
+  width: max-content;
   text-align: center;
   color: black;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0px 20px 0px 20px;
 }
+
 
 .Welcome-message {
   font-size: 40px;
@@ -53,7 +59,7 @@
   display: inline-block;
 }
 
-.currentMember > .Message-content {
+.CurrentMember > .Message-content {
   align-items: flex-end;
 }
 
